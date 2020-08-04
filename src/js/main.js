@@ -25,9 +25,37 @@
     document.querySelector('.taskList').innerHTML = htmlString;
   };
 
+  const formSubmit = (event) => {
+    event.preventDefault();
+
+    const newTaskDescription = document.querySelector('.js-newTask').value.trim();
+    if (newTaskDescription === '') {
+      return;
+    }
+    addNewTask(newTaskDescription);
+  };
+
+
+  const addNewTask = (newTaskDescription) => {
+
+    tasks.push({
+      description: newTaskDescription,
+    });
+    render();
+
+  };
+
+
+
   const init = () => {
     render();
+
+    const form = document.querySelector('.js-form');
+    form.addEventListener('submit', formSubmit);
   };
+
+
+
 
   init();
 }  
